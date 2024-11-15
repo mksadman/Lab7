@@ -20,4 +20,6 @@ public abstract class User {
     public boolean authenticate(String password) {
         return this.password.equals(password);
     }
+
+    public abstract void performActions(String action);
 }

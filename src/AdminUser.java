@@ -1,4 +1,4 @@
-public class AdminUser extends User implements Viewable, Editable, AdminWorks{
+public class AdminUser extends User implements AdminWorks{
     public AdminUser(String username, String email, String password) {
         super(username, email, password);
     }
@@ -9,7 +9,7 @@ public class AdminUser extends User implements Viewable, Editable, AdminWorks{
     }
 
     @Override
-    public void editData(String data) {
+    public void editUserData(String data) {
 
     }
 
@@ -19,7 +19,16 @@ public class AdminUser extends User implements Viewable, Editable, AdminWorks{
     }
 
     @Override
+    public void updateUserPrivileges(String userID, String privilege) {
+    }
+
+    @Override
     public void modifySettings(String setting) {
+
+    }
+
+    @Override
+    public void performActions(String action) {
 
     }
 }

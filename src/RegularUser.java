@@ -6,4 +6,9 @@ public class RegularUser extends User implements Viewable{
     @Override
     public void viewData() {
     }
+
+    @Override
+    public void performActions(String action) {
+        viewData();
+    }
 }

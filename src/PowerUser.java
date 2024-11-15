@@ -1,4 +1,4 @@
-public class PowerUser extends User implements Viewable, Editable{
+public class PowerUser extends User implements Editable{
     public PowerUser(String username, String email, String password) {
         super(username, email, password);
     }
@@ -9,7 +9,17 @@ public class PowerUser extends User implements Viewable, Editable{
     }
 
     @Override
-    public void editData(String data) {
+    public void editUserData(String data) {
 
+    }
+
+    @Override
+    public void performActions(String action) {
+        if (action.equals("view")) {
+            viewData();
+        }
+        if (action.equals("edit")) {
+            editUserData("data");
+        }
     }
 }
