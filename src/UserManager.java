@@ -9,6 +9,7 @@ public class UserManager {
     private UserManager() {
         users = new ArrayList<>();
         loadUsersFromFile();
+        loadAdminsFromFile();
     }
 
     public static UserManager getInstance() {
@@ -69,6 +70,33 @@ public class UserManager {
             System.out.println("UserID: " + user.userID + ", Username: " + user.getUsername() + ", Email: " + user.email + ", Type: " + userType);
         }
     }
+
+    public void loadAdminsFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Admin.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                AdminUser admin = new AdminUser(data[1], data[2], data[3]); // UserID, Username, Email, Password
+                users.add(admin);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading admin file: " + e.getMessage());
+        }
+    }
+
+    public void saveAdminsToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Admin.csv"))) {
+            for (User user : users) {
+                if (user instanceof AdminUser) {
+                    writer.write(user.userID + "," + user.getUsername() + "," + user.email + "," + user.password + "\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing admin file: " + e.getMessage());
+        }
+    }
+
+
 
     public List<User> getUsers() {
         return users;
